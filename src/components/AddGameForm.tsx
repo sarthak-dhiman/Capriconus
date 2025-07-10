@@ -1,74 +1,32 @@
-// src/components/AddGameForm.tsx
 import { useState } from 'react';
+import { createGame } from '../api/api';
 
-export type GameInput = {
-  title: string;
-  description: string;
-  genre: string;
-  platform: string;
-};
-
-type Props = {
-  onSubmit: (data: GameInput) => void;
-};
-
-const AddGameForm = ({ onSubmit }: Props) => {
-  const [form, setForm] = useState<GameInput>({
+const AddGameForm = () => {
+  const [form, setForm] = useState({
     title: '',
     description: '',
     genre: '',
-    platform: ''
+    platform: '',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(form);
+    await createGame(form);
+    alert('Game added!');
     setForm({ title: '', description: '', genre: '', platform: '' });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-md max-w-lg mx-auto">
-      <input
-        type="text"
-        name="title"
-        placeholder="Game Title"
-        value={form.title}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-        required
-      />
-      <textarea
-        name="description"
-        placeholder="Description"
-        value={form.description}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-        required
-      />
-      <input
-        type="text"
-        name="genre"
-        placeholder="Genre"
-        value={form.genre}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-      />
-      <input
-        type="text"
-        name="platform"
-        placeholder="Platform"
-        value={form.platform}
-        onChange={handleChange}
-        className="w-full p-2 border rounded"
-      />
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Add Game
-      </button>
+    <form onSubmit={handleSubmit} className="p-4 flex flex-col gap-4">
+      <input name="title" value={form.title} onChange={handleChange} placeholder="Title" className="p-2" />
+      <input name="genre" value={form.genre} onChange={handleChange} placeholder="Genre" className="p-2" />
+      <input name="platform" value={form.platform} onChange={handleChange} placeholder="Platform" className="p-2" />
+      <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description" className="p-2" />
+      <button type="submit" className="bg-blue-600 text-white p-2 rounded">Add Game</button>
     </form>
   );
 };
