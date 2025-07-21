@@ -1,15 +1,8 @@
-# 🚀 Capriconus 🎮  
+
 **Capriconus** is a full-stack desktop application to organize and track your personal game library — including non-launcher games!  
 Built with **Electron + React + TailwindCSS** on the frontend and **FastAPI + PostgreSQL** on the backend.
 
----
-
-## 📸 Preview
-<img src="preview.png" alt="Capriconus Screenshot" width="700"/>
-
----
-
-## 🧱 Tech Stack
+## Tech Stack
 
 ### 🔹 Frontend
 - [Electron](https://www.electronjs.org/) – Cross-platform desktop shell
@@ -24,7 +17,5 @@ Built with **Electron + React + TailwindCSS** on the frontend and **FastAPI + Po
 - [SQLAlchemy](https://www.sqlalchemy.org/) – ORM
 - [Uvicorn](https://www.uvicorn.org/) – ASGI server
 
----
-
-## 📁 Project Structure
+**still under active development**
 
