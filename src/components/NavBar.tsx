@@ -1,13 +1,19 @@
+import './NavBar.css';
 import { Link } from 'react-router-dom';
 
-const NavBar = () => (
-  <nav className="bg-gray-900 text-white px-6 py-3 flex justify-between items-center">
-    <h1 className="text-2xl font-bold">Capriconus</h1>
-    <div className="space-x-4">
-      <Link to="/" className="hover:underline">Library</Link>
-      <Link to="/add" className="hover:underline">Add Game</Link>
-    </div>
-  </nav>
-);
+const NavBar = () => {
+  return (
+    <nav className="navbar">
+      <div className="brand">
+        <img src='/icon.ico' alt="logo" className="logo" />
+        <h1 className="title">Capriconus</h1>
+      </div>
+      <div className="nav-links">
+        <Link to="/library">Library</Link>
+        <Link to="/add">Add Game</Link>
+      </div>
+    </nav>
+  );
+};
 
 export default NavBar;
